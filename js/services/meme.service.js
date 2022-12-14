@@ -2,6 +2,9 @@
 
 var gKeywordSearchCountMap = {'funny': 12,'cat': 10, 'baby': 7, 'cynical': 8, 'animals':6} 
 
+const gIcons = ['😎','😍','😂','😅','🤗','🍔']
+
+
 let gSearchTxt = ''
 
 var gImgs = [
@@ -51,6 +54,14 @@ var gMeme = {
     {txt:'', x: 250, y: 250, size: 60, align:'center', color:'red' , isSelected: false}] 
 }
 
+function selectImg(el){
+    gMeme.selectedImgId = el.classList[0].split('-')[1]
+    gImgs[gMeme.selectedImgId].url = el.src
+}
+
+function getMeme(){
+    return gMeme
+}
 function getImgsForDisplay(){
     let imgs = gImgs.filter((img) => {
         return img.keywords.some(word => {
@@ -60,4 +71,12 @@ function getImgsForDisplay(){
     return imgs.map((img)=> {return img.url}) 
      
 }
+
+function getIconTxt(idx){
+    return gIcons[idx]
+}
+
+
+
+
 
