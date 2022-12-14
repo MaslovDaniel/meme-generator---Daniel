@@ -6,10 +6,15 @@ function renderGallery(value){
 
 function renderGalleryImgs(){
     let imgsUrl = getImgsForDisplay()
+    // console.log(imgsUrl)
     let strHTML = ``
     imgsUrl.map((url,idx) => {
         strHTML += `<img class="img-${idx}" src="${url}" 
-        alt="img for meme editor">`
+        alt="img for meme editor" 
+        onclick="toEditorMode(this)">`
     })
+
+    // console.log(strHTML)
     document.querySelector('.gallery-container').innerHTML = strHTML
 }
+

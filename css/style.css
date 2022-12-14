@@ -1,27 +1,36 @@
+:root {
+    /* BP */
+    --l: 1060px;
+    --m: 860px;
+    --s: 600px;
+}
+
 * {
     box-sizing: border-box;
 }
 
-html {
 
-    color:rgb(2, 2, 2);
+html {
+    color: var(--clr1);
+    font-family: playfair, serif;
     line-height: 1.25;
 }
 
 body {
     margin: 0;
-    background-color: lightgray;
+    background-color:#23252c;
+}
+main{
+  background-color: #383b44;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  border-radius: 2.5%;
 }
 
-main{
-    background-color: #3754aa;
-    width: 95%;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    border-radius: 2.5%;
-  }
-
-  /* HELPERS */
+button{
+  text-decoration: none;
+}
 
 /* flex helpers */
 
@@ -65,27 +74,60 @@ main{
     padding: 0;
   }
 
-  .main-header {
-    background: rgb(15,155,178);
-    box-shadow: inset 0px -6px 0 var(--clr4);
-    box-sizing: border-box;
-    width: 95%;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    border-radius: 20%;
-    position: relative;
+.main-header {
+  background: linear-gradient(90deg, rgb(19, 147, 96) 0%, rgb(44, 197, 92) 35%, rgb(78, 199, 106) 100%);
+  color: var(--clr-5);
+  box-sizing: border-box;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  border-radius: 20%;
+  position: relative;
+  
+}
+
+.main-header .logo {
+    font-family: euro, sans-serif;
+    font-size: 2.5rem;
+    padding-left: 60px;
+}
+
+.main-header .title-logo {
+    color: var(--clr-primary);
+}
+
+/* MAIN NAV */
+
+.btn-menu{
+    display: none; 
+}
+  .main-nav a {
+    color: #292929;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0ca5c000;
+    z-index: 1;
+    transition: box-shadow 0.4s;
   }
 
+  .main-nav a.active {
+    box-shadow: inset 0px -6px 0 var(--clr-primary);
+    color: white;
+  }
   
-  .gallery-container{
+  .main-nav a:hover {
+    box-shadow: inset 0px -6px 0 var(--clr-primary);
+  }
+  
+.gallery-container{
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
     gap: 10px;
-    padding: 60px;
+    padding: 40px;
     width: auto;
     min-height: 80vh;
-    margin-bottom: 10px;
-
+    margin-bottom: 10px; 
 }
 
 .gallery-container img{
@@ -93,6 +135,4 @@ main{
     cursor: pointer;
     border-radius: 10%;
 }
-
-
 

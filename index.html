@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meme-Generator!!!!!</title>
+  <title>Meme-Generator</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -15,30 +15,32 @@
       <div class="logo">Memes</div>
       <nav class="main-nav ">
         <ul class="flex clear-list flex align-center justify-center">
-          <li><a href="#">Gallery</a></li>
+          <li><a class="active gellery-nav" href="#" onclick="toGalleryMode()">Gallery</a></li>
+          <li><a href="#">Mems</a></li>
           <li><a href="#">About</a></li>
         </ul>
       </nav>
     </div>
   </header>
+
   <main class="image-gallery full space-between align-center">
     <section class="filter-bar flex align-center">
-      <input class="text-search" type="text" placeholder="Search🔍">
+      <input class="text-search" type="text" placeholder="Search                             🔍"
+        oninput="onImgSearch(this.value)">
       <div class="sub-header-container flex align-center">
         <div class="common-words flex space-even align-center">
+        </div>
+      </div>
     </section>
     <section class="grid gallery-container"></section>
   </main>
   <section hidden class="meme-editor grid full" style="display: none;">
-    <div class="canvas-container">
-      <canvas width="500" height="500" id="my-canvas"></canvas>
-    </div>
 
     <script src="js/main.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/controller/gallery.controller.js"></script>
     <script src="js/controller/meme.controller.js"></script>
-    
+
 </body>
 
 </html>
