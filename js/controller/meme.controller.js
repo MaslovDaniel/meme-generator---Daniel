@@ -39,7 +39,7 @@ function renderIconsBar() {
 
 function renderMeme(img) {
     if (!img) {
-        img = getUrl() // to allow drawing to the pic
+        img = getUrl() // to allow drawing on the pic
         drawImg(img)
     } else {
         drawImg(img)
@@ -136,21 +136,21 @@ function onMove(ev) { // standart func for mobile
 function onUp() { // standart func for mobile
     gIsDown = false
     gLineDragIdx = -1
-    document.body.style.cursor = 'auto'    // Default. The browser sets a cursor
+    document.body.style.cursor = 'auto'    // 'auto' is Default. The browser sets a cursor
 }
 
 function onDown(ev) { // standart func for mobile
     //Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
 
-    console.log('pos:', pos);
+    // console.log('pos:', pos);
     gIsDown = true
     let lineIdx = lineClickedIdx(pos)
 
     if (lineIdx < 0) return
     gLineDragIdx = lineIdx
     gLineIdx = lineIdx
-    setSelectedLine(gLineIdx)
+    setSelectedLine(gLineIdx) // make sure we are on the selected line
     setTxtInput()
     renderMeme()
     //Save the pos we start from 
@@ -195,3 +195,45 @@ function choseIcon(idx) {
 function setIcon(idx) {
     gMeme.icons = { iconTxt: gIcons[idx], iconIdx: 250, iconIdy: 250 }
 }
+
+function changeRow(){
+    if (!gLineIdx) gLineIdx++
+    else gLineIdx-- // so we can go back to the first line , bug: cant go to the middle
+    setSelectedLine(gLineIdx)
+    renderMeme()
+}
+
+function addTxtRow(){
+    gLineIdx++
+    setSelectedLine(gLineIdx)
+    renderMeme()
+    document.querySelector('.txt-line-input').value = ''
+    
+}
+function clearRow(){
+    clearTxt(gLineIdx)
+    changeRow()
+}
+function changeTxtSize(num){
+    setTxtSize(num, gLineIdx)
+    renderMeme()
+}
+
+function changeColor(value){
+    setColor(value,gLineIdx)
+    renderMeme()
+}
+
+function alignTxt(value,direction){
+    setLineAlign(value,direction,gLineIdx)
+    renderMeme()
+}
+
+function nextIcons(change){
+    gIconIdx += change
+    gIconIdx = (gIconIdx < 0) ? getLastIdx() : gIconIdx
+    gIconIdx = (gIconIdx > getLastIdx()) ? 0 : gIconIdx
+
+    renderIconsBar()
+}
+

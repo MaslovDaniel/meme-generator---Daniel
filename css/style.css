@@ -125,6 +125,45 @@ button {
   box-shadow: 5px 5px 5px 0px #c8a3a3, inset 4px 4px 15px 0px #e9b2b2, 5px 5px 15px 5px rgba(0,0,0,0);
 }
 
+
+.btns-2 {
+  
+  background-color: aqua;
+  height: 150px;
+  width: 150px;
+  display: grid;
+  grid-template-columns:repeat(auto-fit, minmax(40px, 1fr));
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 20px;
+  
+}
+
+.top-btns {
+
+  height: 100px;
+  width: 100px;
+  display: grid;
+  grid-template-columns:1fr;
+  grid-template-rows: 1fr ;
+  gap: 10px;
+}
+
+
+.txt-line-input{
+  grid-area: head;
+  border-radius: 30%;
+  width: 80%;
+  height: 50%;
+  margin-left: 10%;
+  padding-left: 35%;
+}
+
+.icon-bar {
+
+  height: 20%;
+  width: 40%;
+}
+
 @media (max-width: 560px) {
   .main-header {
     margin-bottom: 4px;

@@ -49,8 +49,11 @@ var gMeme = {
     selectedImgId: 5, 
     selectedLineIdx: 0, 
     icons: {iconTxt: '', iconIdx:0 ,iconIdy: 0, isSelected: false},
-    lines: [ {txt:'', x: 250, y: 70, size: 60, align:'center', color:'red', isSelected: true},] // size if font 
+    lines: [ {txt:'', x: 250, y: 70, size: 60, align:'center', color:'red', isSelected: true}, // three lines for 3 line in memes editor
+    {txt:'', x: 250, y: 437, size: 60, align:'center', color:'red', isSelected: false},
+    {txt:'', x: 250, y: 250, size: 60, align:'center', color:'red' , isSelected: false}] 
 }
+
 
 // to render only the pics with a specific keyword
 function getImgsForDisplay(){
@@ -73,13 +76,6 @@ function selectImg(el){
     
     gImgs[gMeme.selectedImgId].url = el.src
     // console.log(' gImgs[gMeme.selectedImgId].url:',  gImgs[gMeme.selectedImgId].url);
-    
-}
-
-function setSelectedLine(index){
-    gMeme.lines.map((line,idx) => {
-        line.isSelected = (idx === index) ? true: false
-    })
 }
 
 function getMeme(){
@@ -97,6 +93,11 @@ function getUrl(){
 function setLineTxt(txt,idx){
     gMeme.lines[idx].txt = txt 
 }
+function setSelectedLine(index){ // make sure we are on the selected line
+    gMeme.lines.map((line,idx) => {
+        line.isSelected = (idx === index) ? true: false
+    })
+}
 
 function getIcon(){
     return gMeme.icons
@@ -106,5 +107,67 @@ function getLineTxt(idx){
     return gMeme.lines[idx].txt
 }
 
+function resetSelectedLines(){
+    gMeme.lines.map(line => {line.isSelected = false})
+}
 
+function getCoords(idx){
+    let {x,y} = gMeme.lines[idx]
+    return {x, y: y - 37}
+}
 
+function setColor(value,idx){
+    gMeme.lines[idx].color = value
+}
+
+function setTxtSize(num, idx){
+    gMeme.lines[idx].size += num
+}
+
+function getTextSize(idx){
+    return gMeme.lines[idx].size
+}
+
+function clearTxt(idx){
+    gMeme.lines[idx].txt = ''
+}
+
+function getIconTxt(idx){
+    return gIcons[idx]
+}
+
+function getLastIdx(){
+    return gIcons.length - 3
+}
+
+function lineClickedIdx(clickedPos){
+    
+    let linegrab = gMeme.lines.findIndex(line => {
+        return (clickedPos.y < line.y + 10 && clickedPos.y > line.y - 50 &&
+            line.txt)
+    })
+    let line = gMeme.lines.find(line => {
+        return (clickedPos.y < line.y + 10 && clickedPos.y > line.y - 50 &&
+            line.txt)
+    })
+    return linegrab
+}
+
+function getLineTxt(idx){
+    return gMeme.lines[idx].txt
+}
+
+function clearMemeTxt(){
+    gMeme.lines = [ {txt:'', x: 250, y: 70, size: 60, align:'center', color:'red', isSelected: true},
+    {txt:'', x: 250, y: 437, size: 60, align:'center', color:'red', isSelected: false},
+    {txt:'', x: 250, y: 250, size: 60, align:'center', color:'red' , isSelected: false}] 
+}
+
+function setLineAlign(value,direction,idx){
+    gMeme.lines[idx].x = value
+    gMeme.lines[idx].align = direction
+}
+
+function getLastIdx(){
+    return gIcons.length - 3
+}
