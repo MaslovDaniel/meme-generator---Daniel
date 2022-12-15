@@ -1,16 +1,16 @@
 'use strict'
 
-function renderGallery(value){
+function renderGallery(){
     renderGalleryImgs()
 }
 
 function renderGalleryImgs(){
-    let imgsUrl = getImgsForDisplay()
-    // console.log(imgsUrl)
+    let imgsUrl = getImgsForDisplay() // to render only the pics with a specific keyword
+    // console.log('imgsUrl:', imgsUrl);
+    
     let strHTML = ``
     imgsUrl.map((url,idx) => {
         strHTML += `<img class="img-${idx}" src="${url}" 
-        alt="img for meme editor" 
         onclick="toEditorMode(this)">`
     })
 

@@ -2,20 +2,11 @@
 
 function onInit(){
     renderGallery()
-    document.querySelector('.img-0').innerHTML = `<input
-    type="file"
-    class="file-input btn"
-    name="image"
-    onchange="onImgInput(event)"
-  />`
 }
 
 function toEditorMode(el){
-  console.log('this:',el.classList[0]);
-  document.querySelector('.image-gallery').hidden = true
-  document.querySelector('.meme-editor').hidden = false
-  document.querySelector('.meme-editor').style.display = 'grid'
-  document.querySelector('.gellery-nav').classList.remove('active')
+  document.querySelector('.image-gallery').hidden = true // hide pics gallery when meme is clicked 
+  document.querySelector('.meme-editor').style.display = 'grid' // make editor appear and treat him as grid element
   initEditor(el)
 }
 

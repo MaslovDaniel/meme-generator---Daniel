@@ -4,7 +4,6 @@ var gKeywordSearchCountMap = {'funny': 12,'cat': 10, 'baby': 7, 'cynical': 8, 'a
 
 const gIcons = ['😎','😍','😂','😅','🤗','🍔']
 
-
 let gSearchTxt = ''
 
 var gImgs = [
@@ -45,23 +44,15 @@ var gImgs = [
     {id: 17, url: 'images/meme-imgs/17.jpg', keywords: ['funny', 'politics', 'putin', 'russia']},
     {id: 18, url: 'images/meme-imgs/18.jpg', keywords: ['two', 'cartoon','movie','pointing']},
 ]
+
 var gMeme = { 
     selectedImgId: 5, 
     selectedLineIdx: 0, 
     icons: {iconTxt: '', iconIdx:0 ,iconIdy: 0, isSelected: false},
-    lines: [ {txt:'', x: 250, y: 70, size: 60, align:'center', color:'red', isSelected: true},
-    {txt:'', x: 250, y: 437, size: 60, align:'center', color:'red', isSelected: false},
-    {txt:'', x: 250, y: 250, size: 60, align:'center', color:'red' , isSelected: false}] 
+    lines: [ {txt:'', x: 250, y: 70, size: 60, align:'center', color:'red', isSelected: true},] // size if font 
 }
 
-function selectImg(el){
-    gMeme.selectedImgId = el.classList[0].split('-')[1]
-    gImgs[gMeme.selectedImgId].url = el.src
-}
-
-function getMeme(){
-    return gMeme
-}
+// to render only the pics with a specific keyword
 function getImgsForDisplay(){
     let imgs = gImgs.filter((img) => {
         return img.keywords.some(word => {
@@ -72,11 +63,48 @@ function getImgsForDisplay(){
      
 }
 
+function selectImg(el){
+    // console.log('el:', el);
+    // catch the class that is img-his num
+    // console.log('el.classList[0]:', el.classList[0]) 
+    
+    gMeme.selectedImgId = el.classList[0].split('-')[1] // catch only the num/id of the pic
+    // console.log('gMeme.selectedImgId:', gMeme.selectedImgId);
+    
+    gImgs[gMeme.selectedImgId].url = el.src
+    // console.log(' gImgs[gMeme.selectedImgId].url:',  gImgs[gMeme.selectedImgId].url);
+    
+}
+
+function setSelectedLine(index){
+    gMeme.lines.map((line,idx) => {
+        line.isSelected = (idx === index) ? true: false
+    })
+}
+
+function getMeme(){
+    return gMeme
+}
+
 function getIconTxt(idx){
     return gIcons[idx]
 }
 
+function getUrl(){
+    return gImgs[gMeme.selectedImgId].url
+}
 
+function setLineTxt(txt,idx){
+    gMeme.lines[idx].txt = txt 
+}
+
+function getIcon(){
+    return gMeme.icons
+}
+
+function getLineTxt(idx){
+    return gMeme.lines[idx].txt
+}
 
 
 
