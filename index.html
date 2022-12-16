@@ -24,7 +24,7 @@
     </div>
   </header>
 
-  <main class="image-gallery full space-between align-center">
+  <main class="image-gallery">
     <section class="filter-bar flex align-center">
       <input class="text-search" type="text" placeholder="Search                             🔍"
         oninput="onImgSearch(this.value)">
@@ -33,7 +33,7 @@
     </section>
     <section class="grid gallery-container"></section>
   </main>
-  <section hidden class="meme-editor grid full" style="display: none;">
+  <section hidden class="meme-editor grid" >
     <div class="canvas-container">
       <canvas width="500" height="500" id="my-canvas"></canvas>
     </div>
@@ -43,7 +43,7 @@
         <div class ="top-btns" >
         <button class="btn-editor change" onclick="changeRow()">⬆⬇</button>
         <button class="btn-editor pluse" onclick="addTxtRow()">➕</button>
-        <button class="btn-editor clear" onclick="clearRow()">🚽</button>
+        <button class="btn-editor clear" onclick="clearRow()">❌</button>
       </div>
         <div class="btns-2">
           <button class="btn-editor txt-engage" onclick="changeTxtSize(10)">A+</button>

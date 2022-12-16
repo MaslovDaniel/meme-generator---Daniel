@@ -9,22 +9,28 @@ let gLineDragIdx = -1
 
 let gIsDown
 let gStartPos
-const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']  // standart const for touch events
 
-function initEditor(el) {
+function initEditor(el) {  // standart canvas must have func to change canvas
     gElCanvas = document.getElementById('my-canvas')
     // console.log('gElCanvas:', gElCanvas)
-
+    
     gCtx = gElCanvas.getContext('2d')
     // console.log('gCtx:', gCtx);
-
+    
     resizeCanvas() // standart canvas must have func
     selectImg(el) // catch specific img
     addListeners() // standart canvas must have func
     renderIconsBar()
     renderMeme(el.src)
-
+    
 }
+
+function inputText(text) { // to write in the canvas
+    setLineTxt(text, gLineIdx)
+    renderMeme()
+}
+
 function resizeCanvas() { // standart canvas must have func
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
@@ -38,8 +44,10 @@ function renderIconsBar() {
 }
 
 function renderMeme(img) {
+    // console.log('img:', img);
+    
     if (!img) {
-        img = getUrl() // to allow drawing on the pic
+        img = getUrl() // to allow drawing one pic
         drawImg(img)
     } else {
         drawImg(img)
@@ -47,12 +55,13 @@ function renderMeme(img) {
 }
 
 function drawImg(image) {
-    const img = new Image() // Create a new html img element
-    img.src = image // Send a network req to get that image, define the img src
-    // When the image ready draw it on the canvas
-    img.onload = () => {
+    const img = new Image() // Create a new html img element , standart func for chaneging canvas
+    img.src = image // Send a network req to get that image, define the img src , standart func for chaneging canvas
+
+    // When the image ready draw it on the canvas standart func for chaneging canvas
+    img.onload = () => {  
         gCtx.drawImage(img, 0, 0, gElCanvas.clientWidth, gElCanvas.clientHeight)
-        drawConTent()
+        drawConTent() 
     }
 }
 
@@ -74,9 +83,11 @@ function drawBox(x = 10, y = 10, size = 50) { // the box where we can write
     gCtx.strokeStyle = 'white'
     y += (50 - size)
     gCtx.strokeRect(x, y, 480, size) // standart function to make a square on canvas
+    // strokeRect(x, y, width, height) The x-axis coordinate of the rectangle's starting point.
+    // The y-axis coordinate of the rectangle's starting point.
 }
 
-function drawText(text, x = 250, y = 47, size, color, align) {
+function drawText(text, x = 250, y = 47, size, color, align) { // standart function for canvas for writing
     gCtx.lineWidth = 2
     gCtx.strokeStyle = color
     gCtx.fillStyle = 'black'
@@ -126,20 +137,26 @@ function addTouchListeners() { // standart canvas must have func
     gElCanvas.addEventListener('touchend', onUp)
 }
 
-function onMove(ev) { // standart func for mobile
+function onMove(ev) { // standart func for mobile , The touchmove event is fired when one or more 
+    // touch points are moved along the touch surface.
+
     if (!gIsDown) return
     const pos = getEvPos(ev)
     // console.log('pos:', pos); 
     gStartPos = pos
     renderMeme()
 }
-function onUp() { // standart func for mobile
+function onUp() { // standart func for mobile , The touchend event fires when one or more 
+    // touch points are removed from the touch surface.
+
     gIsDown = false
     gLineDragIdx = -1
     document.body.style.cursor = 'auto'    // 'auto' is Default. The browser sets a cursor
 }
 
-function onDown(ev) { // standart func for mobile
+function onDown(ev) { // standart func for mobile The touchstart event is fired when one or more ,
+    // touch points are placed on the touch surface.
+
     //Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
 
@@ -158,7 +175,15 @@ function onDown(ev) { // standart func for mobile
     document.body.style.cursor = 'grabbing'
 }
 
+function setTxtInput() {
+    let txt = getLineTxt(gLineIdx)
+    document.querySelector('.txt-line-input').value = ''
+    document.querySelector('.txt-line-input').placeholder = txt
+}
+
 function lineClickedIdx(clickedPos){
+    console.log('clickedPos:', clickedPos);
+    
     let linegrab = gMeme.lines.findIndex(line => {
         return (clickedPos.y < line.y + 10 && clickedPos.y > line.y - 50 &&
             line.txt)
@@ -168,23 +193,6 @@ function lineClickedIdx(clickedPos){
             line.txt)
     })
     return linegrab
-}
-
-function setTxtInput() {
-    let txt = getLineTxt(gLineIdx)
-    document.querySelector('.txt-line-input').value = ''
-    document.querySelector('.txt-line-input').placeholder = txt
-}
-
-function alignTxt(value, direction) {
-    setLineAlign(value, direction, gLineIdx)
-    renderMeme()
-}
-
-
-function inputText(text, x, y) {
-    setLineTxt(text, gLineIdx)
-    renderMeme()
 }
 
 function choseIcon(idx) {
@@ -207,13 +215,14 @@ function addTxtRow(){
     gLineIdx++
     setSelectedLine(gLineIdx)
     renderMeme()
-    document.querySelector('.txt-line-input').value = ''
-    
+    document.querySelector('.txt-line-input').value = '' 
 }
+
 function clearRow(){
     clearTxt(gLineIdx)
     changeRow()
 }
+
 function changeTxtSize(num){
     setTxtSize(num, gLineIdx)
     renderMeme()
@@ -224,16 +233,14 @@ function changeColor(value){
     renderMeme()
 }
 
-function alignTxt(value,direction){
-    setLineAlign(value,direction,gLineIdx)
-    renderMeme()
-}
-
 function nextIcons(change){
     gIconIdx += change
     gIconIdx = (gIconIdx < 0) ? getLastIdx() : gIconIdx
     gIconIdx = (gIconIdx > getLastIdx()) ? 0 : gIconIdx
-
     renderIconsBar()
 }
 
+function alignTxt(value,direction){
+    setLineAlign(value,direction,gLineIdx)
+    renderMeme()
+}

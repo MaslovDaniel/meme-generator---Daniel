@@ -10,9 +10,9 @@ function renderGalleryImgs(){
     
     let strHTML = ``
     imgsUrl.map((url,idx) => {
-        strHTML += `<img class="img-${idx}" src="${url}" 
+        strHTML += `<img class="img-${idx}" src="${url}"  
         onclick="toEditorMode(this)">`
-    })
+    }) // in src we put name of file and locatoin like 'images/meme-imgs/1.jpg'
 
     // console.log(strHTML)
     document.querySelector('.gallery-container').innerHTML = strHTML

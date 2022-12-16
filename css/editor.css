@@ -1,57 +1,39 @@
-.canvas-container{
+.canvas-container {
     width: 500px;
-    height: 500px; 
+    height: 500px;
 }
 
-canvas{
+canvas {
     width: 100%;
     aspect-ratio: 1/1;
     background-color: rgb(0, 0, 0);
     border-radius: 10%;
 }
 
-.control-box{
+.control-box {
     max-width: 600px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 2fr 1fr 1fr 1fr;
     grid-template-areas:
-    'head head head head head'
-    '. btns-1 btns-1 btns-1 .'
-    'btns-2 btns-2 btns-2 btns-2 btns-2'
-    'icon-bar icon-bar icon-bar icon-bar icon-bar'
-    'btns-3 btns-3 btns-3 btns-3 btns-3'
-    'btns-4 btns-4 btns-4 btns-4 btns-4';
+        'head head head head head'
+        '. btns-1 btns-1 btns-1 .'
+        'btns-2 btns-2 btns-2 btns-2 btns-2'
+        'icon-bar icon-bar icon-bar icon-bar icon-bar'
+        'btns-3 btns-3 btns-3 btns-3 btns-3'
+        'btns-4 btns-4 btns-4 btns-4 btns-4';
     grid-gap: 10px;
     background-color: #393c43;
-    margin-left: 10%;  
+    margin-left: 10%;
 }
 
 .meme-editor {
     background-color: rgb(80, 80, 92);
- display: grid;
- grid-auto-flow: dense;
-height: 100vh;
-width: 100vh;
-    
+    display: grid;
+    grid-auto-flow: dense;
 }
 
-
-/* .meme-editor{
-    grid-template-columns: 500px 500px;
-    grid-auto-flow: dense;
-    gap: 10px;
-    padding-left: 6px;
-    padding-top: 70px;
-    padding-right: 60px;
-    width: auto;
-    margin-bottom: 50px;
-    margin-left: 10%;
-    margin-right: 10%;
-} */
-
-
 @media (min-width: 900px) {
-    .meme-editor{
+    .meme-editor {
         margin-top: 10px;
         grid-template-columns: 500px 1fr;
         grid-auto-flow: dense;
@@ -60,7 +42,8 @@ width: 100vh;
         padding-right: 60px;
         width: auto;
     }
-    .canvas-container{
+    
+    .canvas-container {
         width: 500px;
         height: 500px;
     }
