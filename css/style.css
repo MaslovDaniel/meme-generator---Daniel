@@ -129,6 +129,11 @@ button {
   box-shadow: 5px 5px 5px 0px #c8a3a3, inset 4px 4px 15px 0px #e9b2b2, 5px 5px 15px 5px rgba(0,0,0,0);
 }
 
+.btns-1 {
+
+  background-color: #7f7777;
+}
+
 .btns-2 {
   background-color: aqua;
   height: 150px;

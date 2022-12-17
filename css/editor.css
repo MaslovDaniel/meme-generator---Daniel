@@ -5,22 +5,20 @@
 
 canvas {
     width: 100%;
-    aspect-ratio: 1/1;
+    /* aspect-ratio: 1/1; */
     background-color: rgb(0, 0, 0);
     border-radius: 10%;
 }
 
 .control-box {
     max-width: 600px;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 2fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 1fr 1fr 2fr 1fr;
     grid-template-areas:
-        'head head head head head'
-        '. btns-1 btns-1 btns-1 .'
-        'btns-2 btns-2 btns-2 btns-2 btns-2'
-        'icon-bar icon-bar icon-bar icon-bar icon-bar'
-        'btns-3 btns-3 btns-3 btns-3 btns-3'
-        'btns-4 btns-4 btns-4 btns-4 btns-4';
+        'head'
+        'top-btns'
+        'btns-2'
+        'icon-bar';
     grid-gap: 10px;
     background-color: #393c43;
     margin-left: 10%;
